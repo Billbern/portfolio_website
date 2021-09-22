@@ -1,0 +1,59 @@
+@import '_base';
+
+
+.about-skills{
+    padding: 96px 0 144px 0;
+    background-color: $primaryColor;
+
+    .aboutskills-content{
+        display: grid;
+        padding-top: 48px;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 24px;
+
+        & .about-content {
+            width: 100%;
+            grid-column: 1/4;
+        }
+
+        & .skills-content {
+            width: 100%;
+            grid-column: 4/7;
+
+            .techskill-grid{
+                width: 100%;
+                padding-left: 48px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+
+                & > .skill-item {
+                    width: calc(50% - 16px);
+                    flex-basis: auto;
+                }
+            }
+        }
+    }
+}
+
+.techskill-grid .skill-item{
+
+    margin-bottom: 16px;
+
+    h6{
+        margin-bottom: 16px;
+    }
+
+    & .skill-level{
+        height: 8px;
+        width: 100%;
+        border-radius: 4px;
+        background-color: #fff;
+    }
+
+    & .skill-level-inner{
+        height: 100%;
+        border-radius: 4px;
+        background-color: $secondaryColor;
+    }
+}

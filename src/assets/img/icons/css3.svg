@@ -1,0 +1,30 @@
+<svg preserveAspectRatio="xMinYMid" width="420" height="420" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+    <path d="m0 0h538.584v538.583h-538.584z" fill="none"/>
+    <linearGradient id="prefix__a" x1="-825.508" x2="-825.508" y1="1338.301" y2="1419.102" gradientTransform="matrix(1,0,0,-1,1045.93,1658.759)" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#d1d3d4" stop-opacity="0" offset=".387"/>
+        <stop stop-color="#d1d3d4" offset="1"/>
+    </linearGradient>
+    <linearGradient id="prefix__b" x1="-724.552" x2="-724.552" y1="1378.602" y2="1462.591" gradientTransform="matrix(1,0,0,-1,1045.93,1658.759)" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#d1d3d4" stop-opacity="0" offset=".387"/>
+        <stop stop-color="#d1d3d4" offset="1"/>
+    </linearGradient>
+    <linearGradient id="prefix__c" x1="-874.103" x2="-680.039" y1="1302.263" y2="1302.263" gradientTransform="matrix(1,0,0,-1,1045.93,1658.759)" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#e8e7e5" offset="0"/>
+        <stop stop-color="#fff" offset="1"/>
+    </linearGradient>
+    <linearGradient id="prefix__d" x1="-883.032" x2="-672.341" y1="1442.031" y2="1442.031" gradientTransform="matrix(1,0,0,-1,1045.93,1658.759)" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#e8e7e5" offset="0"/>
+        <stop stop-color="#fff" offset="1"/>
+    </linearGradient>
+    <g transform="translate(42.355,21.3995)">
+        <path d="M 303.854,340.525 167.644,377.201 31.432,340.525 0,0 h 335.29 z" fill="#2062af"/>
+        <path d="m167.643 27.582v320.367l0.308 0.084 110.229-29.682 25.443-290.769z" fill="#3c9cd7"/>
+        <path d="m167.522 112.727-97.49 40.602 3.233 40.199 94.257-40.301 100.265-42.868 4.157-41.122z" fill="#fff"/>
+        <path transform="translate(-101.646,-126.929)" d="m171.677 280.258 3.233 40.199 94.257-40.301v-40.5z" fill="url(#prefix__a)" style="fill:url(#prefix__a)"/>
+        <path transform="translate(-101.646,-126.929)" d="m373.59 196.167-104.422 43.489v40.5l100.265-42.868z" fill="url(#prefix__b)" style="fill:url(#prefix__b)"/>
+        <path transform="translate(-101.646,-126.929)" d="m171.827 280.258 3.234 40.199 144.625 0.461-3.235 53.598-47.59 13.398-45.748-11.551-2.772-33.268h-42.508l5.545 64.225 85.945 25.412 85.479-24.951 11.09-127.523z" fill="url(#prefix__c)" style="fill:url(#prefix__c)"/>
+        <path d="m167.522 153.329h-97.49l3.233 40.199 94.257 0.301zm0 107.528-0.462 0.129-45.742-11.551-2.772-33.268h-42.507l5.544 64.225 85.939 25.412z" opacity=".05"/>
+        <path transform="translate(-101.646,-126.929)" d="m162.898 196.167h210.692l-4.157 41.122h-201.453z" fill="url(#prefix__d)" style="fill:url(#prefix__d)"/>
+        <path d="m167.522 69.238h-106.27l5.082 41.122h101.188z" opacity=".05"/>
+    </g>
+</svg>

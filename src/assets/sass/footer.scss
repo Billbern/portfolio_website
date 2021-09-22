@@ -1,0 +1,75 @@
+@import '_base';
+
+.footer {
+    padding: 48px 0;
+    color: #ffffff;
+    background-color: $secondaryColor;
+
+    & .footer-icons {
+        display: flex;
+        margin-bottom: 16px;
+
+        span {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            margin-right: 16px;
+
+            & svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    & .footer-text {
+
+        span {
+
+            margin: 0 8px;
+
+            svg {
+                width: 16px;
+                height: 16px;
+                animation: Heartpumping 0.9s infinite;
+                transition: all 0.9s ease-0ut;
+            }
+        }
+
+        a {
+            color: #ffffff;
+            
+            & >.tag {
+                margin: 0;
+                font-weight: 600;
+                font-style: italic;
+                display: inline-block;
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            & > span:first-child{
+                padding-left: 6px;
+                padding-right: 4px;
+            }
+        }
+
+    }
+}
+
+@keyframes Heartpumping {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        transform: scale(1.15, 1.15);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}

@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+* .container {
+  width: 84.35%;
+  margin: 0 auto;
+}
+
+svg, img {
+  object-fit: fill;
+  -o-object-fit: fill;
+  vertical-align: middle;
+  object-position: center;
+  -o-object-position: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-family: "Roboto Slab", serif;
+}
+
+h1 {
+  font-size: 90.441px;
+}
+
+h2 {
+  font-size: 63.961px;
+}
+
+h3 {
+  font-size: 45.234px;
+}
+
+h4 {
+  font-size: 31.99px;
+}
+
+h5 {
+  font-size: 22.624px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+.about-skills {
+  padding: 96px 0 144px 0;
+  background-color: #f7e4e4;
+}
+.about-skills .aboutskills-content {
+  display: grid;
+  padding-top: 48px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+}
+.about-skills .aboutskills-content .about-content {
+  width: 100%;
+  grid-column: 1/4;
+}
+.about-skills .aboutskills-content .skills-content {
+  width: 100%;
+  grid-column: 4/7;
+}
+.about-skills .aboutskills-content .skills-content .techskill-grid {
+  width: 100%;
+  padding-left: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.about-skills .aboutskills-content .skills-content .techskill-grid > .skill-item {
+  width: calc(50% - 16px);
+  flex-basis: auto;
+}
+
+.techskill-grid .skill-item {
+  margin-bottom: 16px;
+}
+.techskill-grid .skill-item h6 {
+  margin-bottom: 16px;
+}
+.techskill-grid .skill-item .skill-level {
+  height: 8px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.techskill-grid .skill-item .skill-level-inner {
+  height: 100%;
+  border-radius: 4px;
+  background-color: #04001d;
+}
+
+/*# sourceMappingURL=skills.css.map */

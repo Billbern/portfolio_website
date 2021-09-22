@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+* .container {
+  width: 84.35%;
+  margin: 0 auto;
+}
+
+svg, img {
+  object-fit: fill;
+  -o-object-fit: fill;
+  vertical-align: middle;
+  object-position: center;
+  -o-object-position: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-family: "Roboto Slab", serif;
+}
+
+h1 {
+  font-size: 90.441px;
+}
+
+h2 {
+  font-size: 63.961px;
+}
+
+h3 {
+  font-size: 45.234px;
+}
+
+h4 {
+  font-size: 31.99px;
+}
+
+h5 {
+  font-size: 22.624px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+.contact-map .contactmap-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.contact-map .contactmap-content .map {
+  width: 100%;
+  height: 100%;
+}
+.contact-map .contactmap-content .map .map-content {
+  width: 100%;
+  height: calc(360px + (2 * 151px));
+}
+.contact-map .contactmap-content .contact {
+  display: flex;
+  width: max-content;
+  position: absolute;
+  align-items: center;
+  height: max-content;
+  justify-content: space-between;
+  z-index: 9999;
+  right: 96px;
+  gap: 24px;
+  top: 96px;
+}
+.contact-map .contactmap-content .contact > div {
+  width: calc(50% - 48px);
+}
+.contact-map .contactmap-content .contact .contact-content {
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+  justify-content: center;
+}
+.contact-map .contactmap-content .contact .contact-content > div {
+  padding: 24px;
+  border-radius: 8px;
+  width: max-content;
+  background-color: #04001d;
+}
+.contact-map .contactmap-content .contact .contact-content h4 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #f7e4e4;
+}
+.contact-map .contactmap-content .contact .contact-content form {
+  font-size: 22.624px;
+}
+.contact-map .contactmap-content .contact .contact-content form > div {
+  width: 100%;
+  margin-bottom: 16px;
+}
+.contact-map .contactmap-content .contact .contact-content form input {
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+.contact-map .contactmap-content .contact .contact-content form textarea {
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+.contact-map .contactmap-content .contact .contact-content form input[type=submit] {
+  border: none;
+  padding: 10px 0;
+  font-size: 18px;
+  color: #ffffff;
+  border-radius: 4px;
+  background-color: #3fa9f5;
+}
+
+/*# sourceMappingURL=contact.css.map */
