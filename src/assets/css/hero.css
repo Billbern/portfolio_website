@@ -76,7 +76,7 @@ h6 {
 .hero .hero-inner .hero-intro {
   width: 100%;
   display: grid;
-  padding: 288px 0 192px 0;
+  padding: 192px 0 192px 0;
   grid-template-columns: repeat(8, 1fr);
 }
 
@@ -131,8 +131,9 @@ h6 {
 }
 .hero-intro .intro {
   width: 100%;
-  grid-column: 3/7;
   color: #fff;
+  grid-column: 3/7;
+  padding-top: 96px;
 }
 .hero-intro .intro .heading {
   gap: 24px;
@@ -162,11 +163,11 @@ h6 {
   font-weight: 500;
   padding: 8px 18px;
   font-size: 22.624px;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 .hero-intro .frontend-icons {
   text-align: center;
-  grid-column: 7/8;
+  grid-column: 7/9;
 }
 .hero-intro .icons .icon-container {
   width: 100%;
@@ -183,6 +184,7 @@ h6 {
   justify-content: center;
   background-color: #fff;
   border-radius: 50%;
+  transition: animation 5s ease-in-out;
 }
 .hero-intro .icon-container .tech-icons > img {
   width: 100%;
@@ -193,12 +195,29 @@ h6 {
 .content .content-buttons button {
   border: none;
   color: #04001d;
-  background-color: #f7e4e4;
+  background-color: #fff;
 }
 .content .content-buttons .social {
-  border: 1px solid #f7e4e4;
+  border: 1px solid #fff;
   background-color: transparent;
-  color: #f7e4e4;
+  color: #fff;
+}
+
+@keyframes danceAround50 {
+  0% {
+    transform: rotate(0deg) translate(-50%) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(-50%) rotate(-360deg);
+  }
+}
+@keyframes danceAround25 {
+  0% {
+    transform: rotate(0deg) translate(-25%) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(-25%) rotate(-360deg);
+  }
 }
 
 /*# sourceMappingURL=hero.css.map */
