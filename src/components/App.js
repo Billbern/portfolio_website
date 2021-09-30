@@ -1,8 +1,7 @@
-import ContactMap from "./contact/contactmap";
 import Footer from "./footer/footer";
 import HeroSection from "./hero/hero";
 import Projects from "./projects/projects";
-import AboutSkills from "./skills/aboutskills";
+import SkillsMap from "./skillsmap";
 
 
 function App() {
@@ -10,8 +9,7 @@ function App() {
         <div className="App">
             <HeroSection />
             <Projects />
-            <AboutSkills />
-            <ContactMap/>
+            <SkillsMap />
             <Footer/>
         </div>
     );

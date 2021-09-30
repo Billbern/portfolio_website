@@ -8,11 +8,6 @@
   box-sizing: border-box;
 }
 
-* .container {
-  width: 84.35%;
-  margin: 0 auto;
-}
-
 svg, img {
   object-fit: fill;
   -o-object-fit: fill;
@@ -60,6 +55,10 @@ h6 {
   color: #ffffff;
   background-color: #04001d;
 }
+.footer .footer_inner {
+  width: 84.35%;
+  margin: auto;
+}
 .footer .footer-icons {
   display: flex;
   margin-bottom: 16px;
@@ -93,6 +92,7 @@ h6 {
 .footer .footer-text a > .tag {
   margin: 0;
   font-weight: 600;
+  color: #333656;
   font-style: italic;
   display: inline-block;
   font-family: "Courier New", Courier, monospace;
@@ -100,6 +100,10 @@ h6 {
 .footer .footer-text a > span:first-child {
   padding-left: 6px;
   padding-right: 4px;
+}
+.footer .footer-text p {
+  color: #ffffff;
+  margin-bottom: 0px;
 }
 
 @keyframes Heartpumping {

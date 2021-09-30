@@ -8,11 +8,6 @@
   box-sizing: border-box;
 }
 
-* .container {
-  width: 84.35%;
-  margin: 0 auto;
-}
-
 svg, img {
   object-fit: fill;
   -o-object-fit: fill;
@@ -56,11 +51,20 @@ h6 {
 }
 
 .about-skills {
+  position: relative;
+  border-radius: 24px;
+  color: #04001d;
   padding: 96px 0 144px 0;
-  background-color: #f7e4e4;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.2);
+  background-color: #fd7134;
+  z-index: 9999;
+}
+.about-skills .heading .title {
+  color: #fff;
 }
 .about-skills .aboutskills-content {
   display: grid;
+  color: #fff2dc;
   padding-top: 48px;
   grid-template-columns: repeat(6, 1fr);
   gap: 24px;
@@ -89,13 +93,13 @@ h6 {
   margin-bottom: 16px;
 }
 .techskill-grid .skill-item h6 {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 .techskill-grid .skill-item .skill-level {
   height: 8px;
   width: 100%;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #dfe4ec;
 }
 .techskill-grid .skill-item .skill-level-inner {
   height: 100%;

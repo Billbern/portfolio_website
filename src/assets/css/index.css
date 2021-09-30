@@ -8,11 +8,6 @@
   box-sizing: border-box;
 }
 
-* .container {
-  width: 84.35%;
-  margin: 0 auto;
-}
-
 svg, img {
   object-fit: fill;
   -o-object-fit: fill;
@@ -67,6 +62,7 @@ body {
 
 .App {
   height: 100%;
+  color: #04001d;
   background-color: #fff;
 }
 

@@ -2,28 +2,33 @@
 
 
 .hero {
-    color: $primaryColor;
-    border-radius: 0 0 16px 16px;
+    height: calc(100vh - 48px);
+    border-radius: 0 0 24px 24px;
     background-color: $secondaryColor;
-    box-shadow: 0 3px 10px 3px $primaryShadow;
+    box-shadow: 0 3px 15px 8px $primaryShadow;
 
     .hero-inner {
+        height: 100%;
         width: 84.35%;
+        display: flex;
         margin: 0 auto;
+        flex-direction: column;
+        justify-content: space-between;
+
 
         .header {
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 22.624px;
+            font-size: 18px;
             padding: 16px 0;
         }
 
         .hero-intro {
             width: 100%;
             display: grid;
-            padding: 192px 0 192px 0;
+            height: calc((100vh - 48px) * 0.618);
             grid-template-columns: repeat(8, 1fr);
         }
     }
@@ -50,39 +55,31 @@
         justify-content: flex-end;
 
         .menu {
-            width: min-content;
-            height: min-content;
+            display: flex;
+            cursor: pointer;
+            width: 26px;
+            height: 26px;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.5s ease;
         }
 
         span {
-            width: 24px;
             height: 3px;
+            width: 26px;
+            margin: 2px 0;
             border-radius: 8px;
             position: relative;
             display: inline-block;
             background-color: $primaryColor;
-            transition: transform 5ms ease-in-out;
+            transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 
-            &::after {
-                content: '';
-                width: 100%;
-                height: 100%;
-                border-radius: 8px;
-                position: absolute;
-                background-color: $primaryColor;
-                top: -7px;
-            }
+        }
 
-            &::before {
-                content: '';
-                width: 100%;
-                height: 100%;
-                border-radius: 8px;
-                position: absolute;
-                background-color: $primaryColor;
-                bottom: -7px;
-            }
-
+        span:last-child{
+            margin-bottom: 0;
         }
     }
 }
@@ -96,15 +93,19 @@
 
     .intro {
         width: 100%;
-        color: #fff;
         grid-column: 3/7;
-        padding-top: 96px;
+        position: relative;
+        z-index: 9;
 
         .heading {
             gap: 24px;
             display: flex;
             align-items: center;
             margin-bottom: 24px;
+
+            h1{
+                color: #fff;
+            }
 
             svg {
                 width: 64px;
@@ -116,6 +117,7 @@
             line-height: 32px;
 
             p {
+                color: $textPrimary;
                 font-size: 22.624px;
                 font-weight: 600;
             }
@@ -125,13 +127,22 @@
                 display: flex;
                 margin-top: 24px;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-start;
 
-                button {
+                span {
+                    width: 124px;
                     font-weight: 500;
-                    padding: 8px 18px;
                     font-size: 22.624px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     border-radius: 4px;
+
+                    & > a{
+                        color: #fff;
+                        font-size: 22.624px;
+                        text-decoration: none;
+                    }
                 }
             }
         }
@@ -149,8 +160,8 @@
     }
 
     .icon-container .tech-icons {
-        width: 64px;
-        height: 64px;
+        width: 48px;
+        height: 48px;
         padding: 4px;
         display: flex;
         position: absolute;
@@ -167,34 +178,117 @@
             display: inline-block;
         }
 
-        // &:nth-child(2n){
-        //     danceAround25 4s linear 0.5ms infinite,
-        //     danceAround25 4s linear 10ms infinite,
-        //     danceAround50 4s linear 0.5ms infinite,
-        //     danceAround50 4s linear 10ms reverse infinite,
-        // }
-
     }
+}
+
+.hamburger .menu.active{
+    transform: translateX(-328px);
+}
+
+.hamburger .menu.active .top{
+    transform: translateY(6px) rotateZ(-45deg);
+}
+
+.hamburger .menu.active .mid{
+    width: 0;
+}
+
+.hamburger .menu.active .bot{
+    transform: translateY(-8px) rotateZ(45deg);
+}
+
+.menuBox{
+    height: 100%;
+    width: 400px;
+    position: fixed;
+    right: -400px;
+    top: 0;
+    z-index: 99999;
+    color: $secondaryColor;
+    background-color: $primaryColor;
+    box-shadow: 6px 0px 10px 2px $primaryShadow;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    & > div {
+        height: 100%;
+        display: flex;
+        padding: 48px 0px;
+        align-items: center;
+        color: $secondaryColor;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    
+    & ul li {
+        color: #fff;
+        padding: 4px 0;
+        margin: 12px 0;
+        list-style: none;
+        text-align: center;
+        font-size: 22.624px;
+    }
+
+    .login-form{
+        width: 100%;
+        padding: 64px;
+        padding-bottom: 0;
+
+        & > div {
+            margin: 16px 0;
+        }
+
+        input{
+            width: 100%;
+            height: 28px;
+            border: none;
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        input[type=submit]{
+            margin: 0;
+            height: auto;
+            color: #fff;
+            padding: 8px 0;
+            background-color: #3fa9f5;
+        }
+    }
+}
+
+.menuBox.active{
+    right: 0;
 }
 
 
 .content {
     .content-buttons {
 
-        button {
+        span {
             border: none;
-            color: $secondaryColor;
-            background-color: #fff;
+            color: #fff;
+            padding: 8px 48px;
+            font-size: 22.634px;
+            background-color: $primaryColor;
         }
 
         .social {
-            border: 1px solid #fff;
+            border: 1px solid $primaryColor;
             background-color: transparent;
-            color: #fff;
+            color: $primaryColor;
         }
     }
 }
 
+
+@keyframes danceAround25{
+    0%{
+        transform: rotate(0deg) translate(-25%) rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg) translate(-25%) rotate(-360deg);
+    }
+}
 
 @keyframes danceAround50{
     0%{
@@ -205,11 +299,11 @@
     }
 }
 
-@keyframes danceAround25{
+@keyframes danceAround75{
     0%{
-        transform: rotate(0deg) translate(-25%) rotate(0deg);
+        transform: rotate(0deg) translate(-75%) rotate(0deg);
     }
     100%{
-        transform: rotate(360deg) translate(-25%) rotate(-360deg);
+        transform: rotate(360deg) translate(-75%) rotate(-360deg);
     }
 }

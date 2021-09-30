@@ -1,7 +1,6 @@
 import { Component, createRef } from 'react';
 import '../../assets/css/projects.css';
 
-
 let timeCaro = null;
 
 export default class Projects extends Component {
@@ -9,47 +8,55 @@ export default class Projects extends Component {
     constructor() {
         super();
         this.contentRef = createRef();
-        this.moveCaro = this.moveCaro.bind(this);
-        this.clearCaro = this.clearCaro.bind(this);
+        this.startMovement = this.startMovement.bind(this);
         this.state = {
+            projects: [
+                { img: "../../assets/img/uploads/portfolio.png", title: 'Portfolio design concept', stack: ['react', 'tailwindcss', 'redux', 'nodejs', 'mongodb'] },
+                { img: "../../assets/img/uploads/socialnetwork.png", title: 'Social Network prototype', stack: ['html5', 'css3', 'python', 'flask', 'postgresql'] },
+                { img: "../../assets/img/uploads/videoconverter.png", title: 'Video converter prototype', stack: ['react', 'css3', 'redux', 'python', 'flask'] },
+                { img: "../../assets/img/uploads/calculator.png", title: 'React Calculator', stack: ['react', 'tailwindcss', 'redux'] }
+            ],
             carouselItem: 0
         }
     }
 
     componentDidMount() {
-        this.getCaro();
-
-        timeCaro = setInterval(() => {
-            this.moveCaro()
-        }, 10000);
-    }
-
-    getCaro() {
         this.setState({
             ...this.state,
             carouselItem: (this.contentRef.current.clientWidth - (2 * 16)) / 3
+        });
+        timeCaro = setInterval(() => {
+            this.startMovement(false);
+        }, 10000);
+    }
+
+    startMovement(left) {
+        let carouSel = document.querySelector('#carouSel');
+        const firstItem = carouSel.firstElementChild;
+        const lastItem = carouSel.lastElementChild;
+
+        if (!left) {
+            carouSel.style.transform = `translate(-${ this.state.carouselItem + 16 }px)`;
+        } else {
+            carouSel.style.transform = `translate(${ this.state.carouselItem + 16 }px)`;
+        }
+
+        carouSel.addEventListener('transitionend', () => {
+            if (!left) {
+                carouSel.appendChild(firstItem);
+            }
+            if (left) {
+                carouSel.prepend(lastItem);
+            }
+            carouSel.style.transition = 'none';
+            carouSel.style.transform = 'translate(0)';
+            setTimeout(function () {
+                carouSel.style.transition = 'all 1.25s ease-in-out';
+            })
         })
     }
 
-    moveCaro(direction) {
-        let carouSel = document.querySelector('#carouSel');
-        let transform = carouSel.style.transform ? carouSel.style.transform.split('(')[1].split('p')[0] : 0;
-        const firstChild = carouSel.firstElementChild;
-        const lastChild = carouSel.lastElementChild;
-
-        console.log(transform);
-
-        if (direction) {
-            carouSel.removeChild(lastChild);
-            carouSel.insertBefore(lastChild, firstChild);
-        } else {
-            carouSel.removeChild(firstChild);
-            carouSel.appendChild(firstChild);
-        }
-
-    }
-
-    clearCaro(){
+    stopMovement() {
         clearInterval(timeCaro);
     }
 
@@ -57,82 +64,46 @@ export default class Projects extends Component {
 
         return (
             <section className="project">
-                <div ref={this.contentRef} className="container">
+                <div ref={this.contentRef} className="w-75 mx-auto">
                     <div className="heading">
                         <h3 className="title">Projects</h3>
                         <h6 className="more">see all</h6>
                     </div>
                     <div className="body">
-                        <div className="contents" onMouseOver={this.clearCaro} onMouseOut={()=>{timeCaro = setInterval(() => { this.moveCaro() }, 10000 )}}>
+                        <div className="contents" onMouseOver={this.stopMovement} onMouseOut={() => { timeCaro = setInterval(() => { this.startMovement(false) }, 10000) }}>
                             <div className="carousel-control">
-                                <span onClick={() => this.moveCaro('left')} className="prev">
+                                <span className="prev" onClick={() => this.startMovement(true)}>
                                     <img src={require('../../assets/img/icons/arrow-left.svg').default} alt="previous" />
                                 </span>
-                                <span onClick={() => this.moveCaro()} className="next">
+                                <span className="next" onClick={() => this.startMovement(false)}>
                                     <img src={require('../../assets/img/icons/arrow-right.svg').default} alt="next" />
                                 </span>
                             </div>
                             <div className="carousel" id="carouSel">
-                                <div className="project-item">
-                                    <div className="project-img" style={{ width: `${this.state.carouselItem}px` }}>
-                                        <img src={require('../../assets/img/uploads/portfolio.png').default} alt="portfolio concept" />
-                                    </div>
-                                    <h6>Portfolio design concept</h6>
-                                    <div className="project-stack">
-                                        {
-                                            ['react', 'tailwindcss', 'redux', 'nodejs', 'mongodb'].map((item, key) => {
-                                                return <div className="stack-icons" title={item} key={key}>
-                                                    <img src={require(`../../assets/img/icons/${item}.svg`).default} alt={item} />
+                                {
+                                    this.state.projects.map((item, key) => {
+                                        return (
+                                            <div key={key} className="project-item">
+                                                <div className="project-img" style={{ width: `${this.state.carouselItem}px` }}>
+                                                    <img src={require(`../../assets/img/uploads/${item.img.split('/')[5]}`).default} alt={item.img} />
                                                 </div>
-                                            })
-                                        }
-                                    </div>
-                                </div>
-                                <div className="project-item">
-                                    <div className="project-img" style={{ width: `${this.state.carouselItem}px` }}>
-                                        <img src={require('../../assets/img/uploads/socialnetwork.png').default} alt="social network" />
-                                    </div>
-                                    <h6>Social Network prototype</h6>
-                                    <div className="project-stack">
-                                        {
-                                            ['html5', 'css3', 'python', 'flask', 'postgresql'].map((item, key) => {
-                                                return <div className="stack-icons" title={item} key={key}>
-                                                    <img src={require(`../../assets/img/icons/${item}.svg`).default} alt={item} />
+                                                <h6>{item.title}</h6>
+                                                <div className="project-stack">
+                                                    {
+                                                        item.stack.map((item, key) => {
+
+                                                            return (
+                                                                <div className="stack-icons" title={item} key={key}>
+                                                                    <img src={require(`../../assets/img/icons/${item}.svg`).default} alt={item} />
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
                                                 </div>
-                                            })
-                                        }
-                                    </div>
-                                </div>
-                                <div className="project-item">
-                                    <div className="project-img" style={{ width: `${this.state.carouselItem}px` }}>
-                                        <img src={require('../../assets/img/uploads/videoconverter.png').default} alt="media converter" />
-                                    </div>
-                                    <h6>Video converter prototype</h6>
-                                    <div className="project-stack">
-                                        {
-                                            ['react', 'css3', 'redux', 'python', 'flask'].map((item, key) => {
-                                                return <div className="stack-icons" title={item} key={key}>
-                                                    <img src={require(`../../assets/img/icons/${item}.svg`).default} alt={item} />
-                                                </div>
-                                            })
-                                        }
-                                    </div>
-                                </div>
-                                <div className="project-item">
-                                    <div className="project-img" style={{ width: `${this.state.carouselItem}px` }}>
-                                        <img src={require('../../assets/img/uploads/calculator.png').default} alt="calculator" />
-                                    </div>
-                                    <h6>React Calculator</h6>
-                                    <div className="project-stack">
-                                        {
-                                            ['react', 'tailwindcss', 'redux'].map((item, key) => {
-                                                return <div className="stack-icons" title={item} key={key}>
-                                                    <img src={require(`../../assets/img/icons/${item}.svg`).default} alt={item} />
-                                                </div>
-                                            })
-                                        }
-                                    </div>
-                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>

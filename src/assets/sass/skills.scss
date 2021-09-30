@@ -2,20 +2,31 @@
 
 
 .about-skills{
+    position: relative;
+    border-radius: 24px;
+    color: $secondaryColor;
     padding: 96px 0 144px 0;
+    box-shadow: 2px 2px 8px 4px $primaryShadow;
     background-color: $primaryColor;
+    z-index: 9999;
+
+    & .heading .title{
+        color: #fff;
+    }
 
     .aboutskills-content{
         display: grid;
+        color: #fff2dc;
         padding-top: 48px;
         grid-template-columns: repeat(6, 1fr);
         gap: 24px;
-
+        
         & .about-content {
             width: 100%;
             grid-column: 1/4;
-        }
 
+        }
+        
         & .skills-content {
             width: 100%;
             grid-column: 4/7;
@@ -37,20 +48,16 @@
 }
 
 .techskill-grid .skill-item{
-
     margin-bottom: 16px;
-
     h6{
-        margin-bottom: 16px;
+        margin-bottom: 8px;
     }
-
     & .skill-level{
         height: 8px;
         width: 100%;
         border-radius: 4px;
-        background-color: #fff;
+        background-color: $textPrimary;
     }
-
     & .skill-level-inner{
         height: 100%;
         border-radius: 4px;

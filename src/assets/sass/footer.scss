@@ -5,6 +5,11 @@
     color: #ffffff;
     background-color: $secondaryColor;
 
+    & .footer_inner {
+        width: 84.35%;
+        margin: auto;
+    }
+
     & .footer-icons {
         display: flex;
         margin-bottom: 16px;
@@ -46,6 +51,7 @@
             & >.tag {
                 margin: 0;
                 font-weight: 600;
+                color: $textSecondary;
                 font-style: italic;
                 display: inline-block;
                 font-family: 'Courier New', Courier, monospace;
@@ -55,6 +61,11 @@
                 padding-left: 6px;
                 padding-right: 4px;
             }
+        }
+
+        p {
+            color: #ffffff;
+            margin-bottom: 0px;
         }
 
     }

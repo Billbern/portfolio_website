@@ -3,22 +3,22 @@ import '../../assets/css/skills.css';
 export default function AboutSkills() {
 
     return (
-        <section className="about-skills">
-            <div className="container">
+        <div className="about-skills">
+            <div className="w-75 mx-auto">
                 <div className="heading">
                     <h3 className="title">Skills & Experience</h3>
                 </div>
                 <div className="aboutskills-content">
                     <div className="about-content">
                         <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est ratione
-                            doloribus obcaecati dolor optio corrupti non, dignissimos quidem unde
-                            ipsum sint impedit nisi suscipit, nulla eveniet autem laboriosam
-                            aperiam. Quibusdam?
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est ratione
-                            doloribus obcaecati dolor optio corrupti non, dignissimos quidem unde
-                            ipsum sint impedit nisi suscipit, nulla eveniet autem laboriosam
-                            aperiam. Quibusdam?
+                            I have always had passion for technology even as a kid but my development 
+                            experience started somewhere in 2016 when I started creating command lines 
+                            applications. Fast forward I create web pages with python flask, joined an intensive AI bootcamp
+                            in which my team emerged as winners of a local hackathon, facilitated a MERN stack web development 
+                            training in my local community.
+                            I now work as a self employed freelancer creating responsive websites for local businesses in the 
+                            community and help out people who are now learning programming or web development.
+                            I am always available to help out in any web development project.
                         </p>
                     </div>
                     <div className="skills-content">
@@ -65,6 +65,6 @@ export default function AboutSkills() {
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
