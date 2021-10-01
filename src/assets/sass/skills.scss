@@ -17,14 +17,12 @@
     .aboutskills-content{
         display: grid;
         color: #fff2dc;
-        padding-top: 48px;
         grid-template-columns: repeat(6, 1fr);
         gap: 24px;
         
         & .about-content {
             width: 100%;
             grid-column: 1/4;
-
         }
         
         & .skills-content {
@@ -48,10 +46,11 @@
 }
 
 .techskill-grid .skill-item{
-    margin-bottom: 16px;
-    h6{
-        margin-bottom: 8px;
+
+    & h6{
+        margin-top: 0;
     }
+    
     & .skill-level{
         height: 8px;
         width: 100%;

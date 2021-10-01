@@ -33,8 +33,8 @@ export default class HeroSection extends Component {
     }
 
     genCoord() {
-        let newCoord = {};
         let chosen = {};
+        let newCoord = {};
         const coord = [
             [6.75, 19.25], [14.5, 60.5], [40.25, 41.5], [18, 46.75],
             [47, 0], [54.5, 78], [76.5, 19], [95, 67.75],
@@ -67,7 +67,7 @@ export default class HeroSection extends Component {
                 ''
                 :
                 <div className="hero">
-                    <div className="hero-inner">
+                    <div className="hero-inner w-75 mx-auto">
                         <header className="header">
                             <div className="logo">
                                 <a href="/">

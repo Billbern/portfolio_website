@@ -1,55 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  text-decoration: none;
-  box-sizing: border-box;
-}
-
-svg, img {
-  object-fit: fill;
-  -o-object-fit: fill;
-  vertical-align: middle;
-  object-position: center;
-  -o-object-position: center;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  font-family: "Roboto Slab", serif;
-}
-
-h1 {
-  font-size: 90.441px;
-}
-
-h2 {
-  font-size: 63.961px;
-}
-
-h3 {
-  font-size: 45.234px;
-}
-
-h4 {
-  font-size: 31.99px;
-}
-
-h5 {
-  font-size: 22.624px;
-}
-
-h6 {
-  font-size: 16px;
-}
-
 .project {
   padding: 96px 0 144px 0;
 }
@@ -60,7 +10,6 @@ h6 {
 }
 .project .body {
   width: 100%;
-  padding-top: 48px;
 }
 .project .body .contents {
   width: 100%;
@@ -113,7 +62,6 @@ h6 {
 .contents .project-item .project-img {
   width: 100%;
   height: auto;
-  margin-bottom: 24px;
 }
 .contents .project-item .project-img img {
   width: 100%;
@@ -124,7 +72,7 @@ h6 {
   display: flex;
   align-items: center;
   padding-left: 8px;
-  padding: 16px 0;
+  padding-bottom: 8px;
 }
 .contents .project-item .project-stack > div {
   width: 48px;

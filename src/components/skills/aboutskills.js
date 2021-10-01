@@ -16,8 +16,12 @@ export default function AboutSkills() {
                             applications. Fast forward I create web pages with python flask, joined an intensive AI bootcamp
                             in which my team emerged as winners of a local hackathon, facilitated a MERN stack web development 
                             training in my local community.
+                        </p>
+                        <p>
                             I now work as a self employed freelancer creating responsive websites for local businesses in the 
                             community and help out people who are now learning programming or web development.
+                        </p>
+                        <p>
                             I am always available to help out in any web development project.
                         </p>
                     </div>

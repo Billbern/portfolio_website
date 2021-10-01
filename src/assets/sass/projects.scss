@@ -12,7 +12,7 @@
 
     .body {
         width: 100%;
-        padding-top: 48px;
+        // padding-top: 48px;
 
         .contents {
             width: 100%;
@@ -73,7 +73,6 @@
         .project-img {
             width: 100%;
             height: auto;
-            margin-bottom: 24px;
 
             & img{
                 width: 100%;
@@ -86,8 +85,8 @@
             display: flex;
             align-items: center;
             padding-left: 8px;
-            padding: 16px 0;
-            // gap: 16px;
+            padding-bottom: 8px;
+            
 
             & > div{
                 width: 48px;

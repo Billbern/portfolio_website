@@ -1,55 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  text-decoration: none;
-  box-sizing: border-box;
-}
-
-svg, img {
-  object-fit: fill;
-  -o-object-fit: fill;
-  vertical-align: middle;
-  object-position: center;
-  -o-object-position: center;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  font-family: "Roboto Slab", serif;
-}
-
-h1 {
-  font-size: 90.441px;
-}
-
-h2 {
-  font-size: 63.961px;
-}
-
-h3 {
-  font-size: 45.234px;
-}
-
-h4 {
-  font-size: 31.99px;
-}
-
-h5 {
-  font-size: 22.624px;
-}
-
-h6 {
-  font-size: 16px;
-}
-
 .about-skills {
   position: relative;
   border-radius: 24px;
@@ -65,7 +15,6 @@ h6 {
 .about-skills .aboutskills-content {
   display: grid;
   color: #fff2dc;
-  padding-top: 48px;
   grid-template-columns: repeat(6, 1fr);
   gap: 24px;
 }
@@ -89,11 +38,8 @@ h6 {
   flex-basis: auto;
 }
 
-.techskill-grid .skill-item {
-  margin-bottom: 16px;
-}
 .techskill-grid .skill-item h6 {
-  margin-bottom: 8px;
+  margin-top: 0;
 }
 .techskill-grid .skill-item .skill-level {
   height: 8px;

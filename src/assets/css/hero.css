@@ -1,55 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  text-decoration: none;
-  box-sizing: border-box;
-}
-
-svg, img {
-  object-fit: fill;
-  -o-object-fit: fill;
-  vertical-align: middle;
-  object-position: center;
-  -o-object-position: center;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
-  font-family: "Roboto Slab", serif;
-}
-
-h1 {
-  font-size: 90.441px;
-}
-
-h2 {
-  font-size: 63.961px;
-}
-
-h3 {
-  font-size: 45.234px;
-}
-
-h4 {
-  font-size: 31.99px;
-}
-
-h5 {
-  font-size: 22.624px;
-}
-
-h6 {
-  font-size: 16px;
-}
-
 .hero {
   height: calc(100vh - 48px);
   border-radius: 0 0 24px 24px;
@@ -58,9 +8,7 @@ h6 {
 }
 .hero .hero-inner {
   height: 100%;
-  width: 84.35%;
   display: flex;
-  margin: 0 auto;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -131,7 +79,6 @@ h6 {
   gap: 24px;
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
 }
 .hero-intro .intro .heading h1 {
   color: #fff;
@@ -145,21 +92,20 @@ h6 {
 }
 .hero-intro .intro .content p {
   color: #dfe4ec;
-  font-size: 22.624px;
+  font-size: 1.333rem;
   font-weight: 600;
 }
 .hero-intro .intro .content .content-buttons {
   gap: 24px;
   display: flex;
-  margin-top: 24px;
   align-items: center;
   justify-content: flex-start;
 }
 .hero-intro .intro .content .content-buttons span {
   width: 124px;
+  display: flex;
   font-weight: 500;
   font-size: 22.624px;
-  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
