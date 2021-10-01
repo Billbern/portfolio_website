@@ -28,10 +28,11 @@
 }
 .about-skills .aboutskills-content .skills-content .techskill-grid {
   width: 100%;
-  padding-left: 48px;
   display: flex;
+  gap: 16px 24px;
   flex-wrap: wrap;
-  gap: 16px;
+  justify-content: flex-end;
+  padding-left: 48px;
 }
 .about-skills .aboutskills-content .skills-content .techskill-grid > .skill-item {
   width: calc(50% - 16px);

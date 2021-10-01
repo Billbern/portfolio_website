@@ -47,8 +47,8 @@
   opacity: 0.6;
 }
 .contents .carousel-control > span img {
-  height: 100%;
-  width: 100%;
+  height: min-content;
+  width: min-content;
 }
 .contents .carousel-control > span:hover {
   opacity: 1;

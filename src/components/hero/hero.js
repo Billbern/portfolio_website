@@ -29,24 +29,24 @@ export default class HeroSection extends Component {
         this.setState({
             ...this.state,
             coord: newCoord
-        })
+        }) 
     }
 
     genCoord() {
         let chosen = {};
         let newCoord = {};
-        const coord = [
-            [6.75, 19.25], [14.5, 60.5], [40.25, 41.5], [18, 46.75],
-            [47, 0], [54.5, 78], [76.5, 19], [95, 67.75],
-            [0, 40.5], [18, 0], [22, 55.25], [46.75, 21.5],
-            [50, 62.5], [75, 11.25], [71.25, 71.25], [49.5, 23.5]
+        const coord = [ [0, 0], [0, 85.7142], [85.7142, 0], [85.7142, 85.7142],
+                        [0, 42.8571], [14.2857, 28.5714], [14.2857, 57.1428], [28.5714, 14.2857],
+                        [28.5714, 42.8571], [28.5714, 71.4285], [42.8571, 0], [42.8571, 28.5714],
+                        [42.8571, 57.1428], [42.8571, 85.7142], [57.1428, 14.2857], [57.1428, 42.8571],
+                        [57.1428, 71.4285], [71.4285, 28.5714], [71.4285, 57.1428], [85.7142, 42.8571] 
         ]
-        while (Object.keys(newCoord).length < 15) {
 
+        while (Object.keys(newCoord).length < 15) {
             let coordRandom = Math.floor(Math.random() * coord.length);
 
-            if (!chosen[String(coord[coordRandom][0])]) {
-                chosen[String(coord[coordRandom][0])] = true;
+            if (!chosen[String(coord[coordRandom])]) {
+                chosen[String(coord[coordRandom])] = true;
                 newCoord[Object.keys(newCoord).length] = coord[coordRandom]
             }
         }
