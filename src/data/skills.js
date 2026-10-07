@@ -18,6 +18,6 @@ export const SKILL_GROUPS = [
     },
     {
         title: 'Exploring',
-        items: ['Machine Learning fundamentals'],
+        items: ['Machine Learning'],
     },
 ];

@@ -1,9 +1,11 @@
 import { EXPERIENCE } from '../data/experience';
 import SectionHeader from './SectionHeader';
+import AdinkraMark from './AdinkraMark';
 
 export default function Experience() {
     return (
-        <section id="experience" aria-label="Experience" className="py-16">
+        <section id="experience" aria-label="Experience" className="py-16 wm-host">
+            <AdinkraMark name="sankofa" className="wm wm-left wm-experience" />
             <div className="container-x">
                 <SectionHeader index="02" label="Experience" title="Experience" />
                 <ol className="timeline reveal">

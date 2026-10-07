@@ -16,6 +16,12 @@
     --accent-ink: #201403;
     --ok: #3DD68C;
 
+    /* Adinkra watermark opacity — per-symbol, spec hard ceiling 0.10. */
+    --wm-nkyinkyim-op: 0.05;
+    --wm-adinkrahene-op: 0.05;
+    --wm-dwennimmen-op: 0.05;
+    --wm-sankofa-op: 0.06;
+
     --ring: var(--accent);
     --selection-bg: var(--accent);
     --selection-fg: var(--accent-ink);
@@ -38,6 +44,11 @@
     --accent-ink: #FFFFFF;
     /* Spec listed #1F8F5F → 4.08:1 on white, below AA. #187A50 = 4.83:1. */
     --ok: #187A50;
+    /* Adinkra watermark opacity — per-symbol, spec hard ceiling 0.10. */
+    --wm-nkyinkyim-op: 0.07;
+    --wm-adinkrahene-op: 0.07;
+    --wm-dwennimmen-op: 0.07;
+    --wm-sankofa-op: 0.08;
 
     color-scheme: light;
 }
@@ -226,6 +237,7 @@ section[id] { scroll-margin-top: 96px; }
     color: var(--muted);
     background: var(--surface-2);
     border: 1px solid var(--border);
+    white-space: nowrap;
 }
 
 /* =========================================================================
@@ -368,17 +380,18 @@ section[id] { scroll-margin-top: 96px; }
 }
 
 /* =========================================================================
-   Project grid — 12-col, row 1: 7+5, row 2: 6+6; 1-col mobile.
+   Project grid — 12-col, both rows 7+5 (columns align); 1-col mobile.
    ========================================================================= */
 .work-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
+    gap: 24px;
+    align-items: start;
 }
 .work-card-1 { grid-column: span 7; }
 .work-card-2 { grid-column: span 5; }
-.work-card-3 { grid-column: span 6; }
-.work-card-4 { grid-column: span 6; }
+.work-card-3 { grid-column: span 7; }
+.work-card-4 { grid-column: span 5; }
 @media (max-width: 860px) {
     .work-grid { grid-template-columns: 1fr; }
     .work-card-1, .work-card-2, .work-card-3, .work-card-4 { grid-column: 1; }
@@ -422,4 +435,104 @@ section[id] { scroll-margin-top: 96px; }
         animation-iteration-count: 1 !important;
         transition-duration: 0ms !important;
     }
+}
+
+/* =========================================================================
+   Adinkra layer (v2) — decorative watermark symbols + small glyphs.
+   Spec constraints:
+   - Watermarks render at >=1280px only, absolutely positioned (zero CLS),
+     bleeding at most 20% of the symbol width off the viewport edge,
+     masked toward the content.
+   - Color = currentColor → inherits both themes; per-symbol opacity via
+     --wm-<symbol>-op (0.04–0.06 dark / 0.06–0.08 light, hard ceiling 0.10).
+   - Sizes: nkyinkyim/dwennimmen 220px, adinkrahene/sankofa 240px at
+     >=1440; all marks 190px between 1280–1439 (spec band 180–200).
+   - aria-hidden + pointer-events-none + select-none live in AdinkraMark.
+   - adinkrahene may be used small (footer glyph, favicon).
+   ========================================================================= */
+.adinkra-mark {
+    display: block;
+    line-height: 0;
+}
+.adinkra-mark svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+/* Inline glyph (footer colophon): flows with the text, full opacity. */
+.adinkra-mark.inline-mark {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: -2px;
+}
+/* Watermark wrapper: static (no animation/transition), textured in.
+   Size comes from --wm-w and opacity from --wm-<symbol>-op, both set in
+   the per-section rules below. */
+.wm {
+    position: absolute;
+    width: var(--wm-w);
+    color: var(--text);
+    z-index: 0;
+    pointer-events: none;
+}
+/* Mask: strongest at the viewport edge, fading toward the content. */
+/* .wm-right {
+    -webkit-mask-image: linear-gradient(to left, black 20%, transparent 75%);
+    mask-image: linear-gradient(to left, black 20%, transparent 75%);
+} */
+/* .wm-left {
+    -webkit-mask-image: linear-gradient(to right, black 20%, transparent 75%);
+    mask-image: linear-gradient(to right, black 20%, transparent 75%);
+} */
+/* Per-section placement: size via --wm-w, edge offset = 20% of that width
+   (calc keeps the bleed exact if the size changes), opacity per symbol. */
+.wm-work {
+    --wm-w: 220px;
+    right: calc(var(--wm-w) * -0.2);
+    top: 120px;
+    opacity: var(--wm-nkyinkyim-op);
+}
+.wm-experience {
+    --wm-w: 240px;
+    left: calc(var(--wm-w) * -0.2);
+    top: 110px;
+    opacity: var(--wm-sankofa-op);
+}
+.wm-skills {
+    --wm-w: 240px;
+    right: calc(var(--wm-w) * -0.2);
+    top: 70px;
+    opacity: var(--wm-adinkrahene-op);
+}
+.wm-contact {
+    --wm-w: 220px;
+    left: calc(var(--wm-w) * -0.2);
+    bottom: 60px;
+    opacity: var(--wm-dwennimmen-op);
+}
+
+/* 1280–1439: render 190px (spec band 180–200). Same specificity as the
+   per-section --wm-w above but later in the source, so it wins — the
+   calc() edge offsets recompute from the overridden width automatically. */
+@media (min-width: 1280px) and (max-width: 1439.98px) {
+    .wm { --wm-w: 190px; }
+}
+
+/* >=1280 only: hosts clip the off-edge bleed (no horizontal overflow)
+   and provide the positioning context; content paints above the texture. */
+@media (min-width: 1280px) {
+    .wm-host {
+        position: relative;
+        /* hidden = legacy fallback; clip = no scroll container (spec). */
+        overflow: hidden;
+        overflow: clip;
+    }
+    .wm-host > .container-x {
+        position: relative;
+        z-index: 1;
+    }
+}
+@media (max-width: 1279.98px) {
+    .wm { display: none; }
 }

@@ -6,7 +6,7 @@ export default function Highlights() {
         <section aria-label="Highlights" className="py-16">
             <div className="container-x">
                 <SectionHeader index="03" label="Highlights" title="Highlights" />
-                <ul className="grid grid-cols-1 md:grid-cols-3 gap-5 reveal">
+                <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
                     {HIGHLIGHTS.map((h) => (
                         <li key={h.idx} className="card p-6">
                             <div className="mono-label text-accent">{h.idx}</div>

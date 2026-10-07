@@ -4,7 +4,7 @@
 export default function SectionHeader({ index, label, title, lead }) {
     const labelText = `${String(index).padStart(2, '0')} · ${label.toUpperCase()}`;
     return (
-        <header className="mb-6">
+        <header className="mb-8">
             <div className="mono-label text-muted" aria-hidden="true">{labelText}</div>
             <h2 className="h2-section mt-2">{title}</h2>
             {lead ? <p className="mt-2 text-muted max-w-2xl">{lead}</p> : null}

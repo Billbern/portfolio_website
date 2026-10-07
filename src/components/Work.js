@@ -1,12 +1,14 @@
 import { PROJECTS } from '../data/projects';
 import ProjectCard from './ProjectCard';
 import SectionHeader from './SectionHeader';
+import AdinkraMark from './AdinkraMark';
 
 const SPANS = ['work-card-1', 'work-card-2', 'work-card-3', 'work-card-4'];
 
 export default function Work() {
     return (
-        <section id="work" aria-label="Selected work" className="py-16">
+        <section id="work" aria-label="Selected work" className="py-16 wm-host">
+            <AdinkraMark name="nkyinkyim" className="wm wm-right wm-work" />
             <div className="container-x">
                 <SectionHeader
                     index="01"
