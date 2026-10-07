@@ -1,30 +1,25 @@
 import { useCallback, useEffect, useState } from 'react';
 
-// Dark/light theme hook. Persists choice to localStorage and auto-detects
-// prefers-color-scheme on first load. Sets `data-theme` on <html>, which the
-// moorben.css :root[data-theme="dark"] block uses to swap the palette.
+// Light/dark theme. Persists choice to localStorage, falls back to
+// prefers-color-scheme on first load. Drives [data-theme] on <html>,
+// which the CSS tokens in index.css read.
 export default function useTheme() {
     const [theme, setTheme] = useState(() => {
         try {
             const t = localStorage.getItem('theme');
             if (t === 'dark' || t === 'light') return t;
-        } catch (_) { /* localStorage may be unavailable */ }
+        } catch (_) { /* ignore */ }
         if (typeof window !== 'undefined' && window.matchMedia) {
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         }
-        return 'light';
+        return 'dark';
     });
 
     useEffect(() => {
-        const r = document.documentElement;
-        if (theme === 'dark') r.setAttribute('data-theme', 'dark');
-        else r.setAttribute('data-theme', 'light');
+        document.documentElement.setAttribute('data-theme', theme);
         try { localStorage.setItem('theme', theme); } catch (_) { /* ignore */ }
     }, [theme]);
 
-    const toggle = useCallback(() => {
-        setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
-    }, []);
-
+    const toggle = useCallback(() => setTheme((t) => (t === 'dark' ? 'light' : 'dark')), []);
     return [theme, toggle];
 }

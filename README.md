@@ -1,64 +1,50 @@
-# Portfolio Website — Bernard Abaidoo
+# Portfolio — Bernard Abaidoo
 
-A React port of the **Moorben — Data, Web, Maps, Desktop** design, populated with the real
-content from the previous portfolio (4 projects, About + Skills + stacks).
+Recruiter-facing portfolio site built with React 17 + Tailwind CSS 2 on
+Create React App 4 (via CRACO). Single-page React Router app with a
+case-study subroute `/work/:slug`.
 
 ## Stack
-- **Create React App 4** + React 17 (kept as-is to avoid an upgrade churn — the design is
-  the point, not the toolchain).
-- **matter-js** for the "logo bowl" physics canvas (replaces the CDN script in the template).
-- **No Bootstrap, no Leaflet, no SASS** — all removed. The template's design has been
-  extracted verbatim into `src/assets/css/moorben.css`.
+- React 17, react-router-dom 5.x
+- Tailwind CSS 2 (via `@tailwindcss/postcss7-compat` + `@craco/craco@7`)
+- No UI frameworks, no animation libraries (CSS keyframes for marquee + reveal)
+- Font Awesome: no. Inline SVG brand paths for the marquee (16 paths total, ~15 KB).
+- Hosted-fonts: Space Grotesk + JetBrains Mono via Google Fonts (preconnect + display=swap)
 
 ## Scripts
-On **Node 17+** (you're on Node 22) webpack 4 needs the legacy OpenSSL provider. The
-`start` / `build` / `test` scripts in `package.json` set `NODE_OPTIONS=--openssl-legacy-provider`
-for you (POSIX shells). On Windows, prefix commands manually:
-`set NODE_OPTIONS=--openssl-legacy-provider && npm start`.
+On Node 17+ webpack 4 needs the OpenSSL legacy provider. The `start` / `build` /
+`test` scripts set `NODE_OPTIONS=--openssl-legacy-provider` for you (POSIX).
+On Windows: `set NODE_OPTIONS=--openssl-legacy-provider && npm start`.
 
 ```bash
 npm install
-npm start    # dev server on http://localhost:3000
-npm run build  # production build into ./build
+npm start       # http://localhost:3000
+npm run build   # ./build ready for static deploy
 ```
 
-## Content
-All identity (name, tagline, email, social handles) lives in `src/site.js`. All
-project + skill content lives in `src/data.js`. Edit those two files to update
-the site — the components derive everything from them.
+## Editing content
+All identity (name, email, GitHub, LinkedIn, CV) lives in `src/data/site.js`.
+All projects / experience / skills / highlights live in `src/data/*.js`.
+Brand paths used in the marquee are hardcoded inline in `src/data/marqueeIcons.js`.
 
-- `src/site.js` — name, monogram, tagline, email, GitHub, Twitter, location.
-- `src/data.js` — `TABS`, `PROJECTS`, `ABOUT`, `SKILLS`, `STACKS`.
+## Routing / hosting notes
+This is a SPA. When deploying to a static host that doesn't auto-rewrite
+unknown paths to `/index.html` (e.g. GitHub Pages), the included
+`public/404.html` is a fallback that stores the requested URL in
+`sessionStorage` and bounces back to `/index.html`, which the client router
+then resolves.
 
-To add a project's Code / Details link, add `code: "https://github.com/..."` and/or
-`url: "https://..."` to the project object — the card will show them automatically.
+For hosts that already rewrite to `index.html` (Vercel, Netlify, Cloudflare Pages),
+the 404 trick is harmless.
 
-## File tree
-```
-src/
-├── components/
-│   ├── App.js          – state owner (active tab, theme)
-│   ├── LogoBowl.js     – Matter.js physics canvas
-│   ├── Profile.js
-│   ├── Projects.js     – tabs + filtered card grid
-│   ├── Skills.js       – about + skill bars + stack tags
-│   ├── Contact.js
-│   └── Footer.js
-├── hooks/
-│   ├── useHash.js
-│   └── useTheme.js
-├── assets/
-│   ├── css/moorben.css     – template's full <style> block
-│   └── img/uploads/        – project screenshots
-├── data.js
-├── site.js
-└── index.js
-```
+## Files of interest
+- `src/components/App.js` — router shell
+- `src/pages/Home.js` — assembles all home sections
+- `src/pages/CaseStudy.js` — case-study template
+- `src/data/*.js` — all copy (identity, projects, experience, highlights, skills, brand paths)
+- `src/assets/css/index.css` — tokens, components, motion
+- `tailwind.config.js` / `craco.config.js` — toolchain wiring
 
-## Notes
-- The original template's hash-routed **Writing / Reader** section has been replaced
-  by a real **Skills & Experience** section anchored at `#skills` (no real blog posts
-  exist; the React page had About + Skills instead).
-- LinkedIn was not present in the previous portfolio; Twitter replaces it.
-- The bowl's "lit" icon sets map to your actual projects: only the `web` tab
-  highlights web tech icons.
+## Known gaps
+See `TODO.md` for the list of `[BRACKET]` placeholders that need to be resolved
+before this goes to production.

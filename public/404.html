@@ -1,0 +1,17 @@
+<!--
+  Static-host SPA fallback. GitHub Pages serves 404.html for unknown routes;
+  we redirect here from index.html via ?p= so the client router can resolve.
+  Other hosts (Vercel/Netlify) usually rewrite to index.html automatically.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bernard Abaidoo</title>
+    <script>
+      sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
+      location.replace('/');
+    </script>
+  </head>
+  <body></body>
+</html>

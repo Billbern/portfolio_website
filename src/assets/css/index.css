@@ -1,0 +1,425 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================================
+   Design tokens — spec-defined, applied via :root (dark) + [data-theme]
+   ========================================================================= */
+:root {
+    --bg: #0B0F14;
+    --surface: #0F151C;
+    --surface-2: #131B24;
+    --border: #202B36;
+    --text: #E8EDF2;
+    --muted: #9FAEBE;
+    --accent: #F4A83A;
+    --accent-ink: #201403;
+    --ok: #3DD68C;
+
+    --ring: var(--accent);
+    --selection-bg: var(--accent);
+    --selection-fg: var(--accent-ink);
+
+    color-scheme: dark;
+}
+
+[data-theme="light"] {
+    --bg: #F7F8FA;
+    --surface: #FFFFFF;
+    --surface-2: #F1F4F8;
+    --border: #E3E8EF;
+    --text: #10151C;
+    --muted: #52606F;
+    /* Spec listed #B96F10 as "AA on light", but it computes to 3.70:1 on
+       #F7F8FA — below AA for normal text. Darkened to #9A5C0C (4.87:1 on
+       #F7F8FA, white-on-it 5.37:1) to satisfy the spec's own AA DoD while
+       preserving the hue. See CHANGELOG.md. */
+    --accent: #9A5C0C;
+    --accent-ink: #FFFFFF;
+    /* Spec listed #1F8F5F → 4.08:1 on white, below AA. #187A50 = 4.83:1. */
+    --ok: #187A50;
+
+    color-scheme: light;
+}
+
+/* =========================================================================
+   Base + reset
+   ========================================================================= */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    font-feature-settings: 'ss01', 'cv11';
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+::selection {
+    background: var(--selection-bg);
+    color: var(--selection-fg);
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+button { font-family: inherit; cursor: pointer; }
+
+img { max-width: 100%; display: block; }
+
+/* =========================================================================
+   Layout helpers
+   ========================================================================= */
+.container-x {
+    width: 100%;
+    max-width: 1160px;
+    margin-inline: auto;
+    padding-inline: 24px;
+}
+
+/* Section scroll-margin so anchor jumps clear the sticky header. */
+section[id] { scroll-margin-top: 96px; }
+
+/* =========================================================================
+   Dot-grid texture at page top, faded with a gradient mask.
+   ========================================================================= */
+.dot-grid {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 280px;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* =========================================================================
+   Type utilities (spec-aligned)
+   ========================================================================= */
+.h1-display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+}
+
+.h2-section {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.mono-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+/* =========================================================================
+   Buttons — never white. PRIMARY = amber, SECONDARY = bordered, GHOST.
+   ========================================================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+    white-space: nowrap;
+}
+.btn-primary {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid var(--accent);
+}
+.btn-primary:hover { transform: translateY(-1px); }
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--text); }
+
+.btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 0;
+    padding: 6px 8px;
+    min-height: 32px;
+}
+.btn-ghost:hover { color: var(--text); }
+
+/* =========================================================================
+   Section reveal (IntersectionObserver)
+   Declared BEFORE .card so that `.card:hover` (same 0,2,0 specificity as
+   `.reveal.is-in`) wins the cascade — otherwise revealed cards would never
+   lift on hover. The `.card` transition below (declared after) also takes
+   over for card reveals, listing opacity for the reveal animation.
+   ========================================================================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 400ms ease, transform 400ms ease;
+}
+.reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* =========================================================================
+   Card
+   ========================================================================= */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 200ms ease, transform 240ms ease, opacity 400ms ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--border) 50%, var(--accent));
+}
+.card:hover .thumb-img { transform: scale(1.03); }
+
+/* =========================================================================
+   Tag chip (canonical-named)
+   ========================================================================= */
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+}
+
+/* =========================================================================
+   Marquee — 40px circular chips, edge fade, pause on hover.
+   ========================================================================= */
+.marquee {
+    --chip: 40px;
+    --gap: 16px;
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+.marquee-track {
+    display: flex;
+    width: max-content;
+    gap: var(--gap);
+    padding-block: 4px;
+    animation: marquee-scroll 40s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-chip {
+    width: var(--chip);
+    height: var(--chip);
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    transition: transform 160ms ease, color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    flex: none;
+}
+.marquee-chip svg { width: 22px; height: 22px; }
+.marquee-chip:hover {
+    transform: translateY(-2px);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+@keyframes marquee-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+}
+
+/* =========================================================================
+   Browser-chrome thumbnail frame (16:10)
+   ========================================================================= */
+.browser-frame {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+.browser-frame .bar {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 22px;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 5px;
+    z-index: 1;
+}
+.browser-frame .bar i {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+}
+.browser-frame .thumb {
+    position: absolute;
+    inset: 22px 0 0 0;
+    overflow: hidden;
+}
+.browser-frame .thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 400ms ease;
+}
+
+/* Per-project tinted background palette — four dark-friendly hues with
+   matched lightness (HSL-L: 14.7 / 14.3 / 14.5 / 14.5 — spread 0.4pp). */
+.bg-hue-1 { background: #1B2330; }
+.bg-hue-2 { background: #1F2A24; }
+.bg-hue-3 { background: #261C2E; }
+.bg-hue-4 { background: #2C241E; }
+
+/* =========================================================================
+   Header — sticky on scroll
+   ========================================================================= */
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+/* =========================================================================
+   Skip link
+   ========================================================================= */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding: 10px 16px;
+    border-radius: 0 0 8px 8px;
+    font-weight: 600;
+    z-index: 100;
+}
+.skip-link:focus { left: 16px; outline: none; }
+
+/* =========================================================================
+   Status dot
+   ========================================================================= */
+.status-dot {
+    width: 8px; height: 8px; border-radius: 999px;
+    background: var(--ok);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 60%, transparent);
+    animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 60%, transparent); }
+    70%  { box-shadow: 0 0 0 8px color-mix(in srgb, var(--ok) 0%, transparent); }
+    100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 0%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .status-dot { animation: none; }
+}
+
+/* =========================================================================
+   Project grid — 12-col, row 1: 7+5, row 2: 6+6; 1-col mobile.
+   ========================================================================= */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+}
+.work-card-1 { grid-column: span 7; }
+.work-card-2 { grid-column: span 5; }
+.work-card-3 { grid-column: span 6; }
+.work-card-4 { grid-column: span 6; }
+@media (max-width: 860px) {
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card-1, .work-card-2, .work-card-3, .work-card-4 { grid-column: 1; }
+}
+
+/* =========================================================================
+   Timeline
+   ========================================================================= */
+.timeline {
+    position: relative;
+    padding-left: 28px;
+}
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 9px; top: 4px; bottom: 4px;
+    width: 1px;
+    background: var(--border);
+}
+.timeline-item {
+    position: relative;
+    padding: 8px 0 24px 0;
+}
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -24px; top: 18px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+}
+.timeline-item:last-child { padding-bottom: 0; }
+
+/* =========================================================================
+   Reduced motion — final safety net for any JS-driven motion.
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0ms !important;
+    }
+}

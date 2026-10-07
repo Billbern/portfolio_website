@@ -1,52 +1,55 @@
-import { useEffect, useState } from 'react';
-import LogoBowl from './LogoBowl';
-import Profile from './Profile';
-import Projects from './Projects';
-import SkillsSection from './Skills';
-import Contact from './Contact';
+import { useEffect, useRef } from 'react';
+import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom';
+import Header from './Header';
 import Footer from './Footer';
-import useHash from '../hooks/useHash';
+import Home from '../pages/Home';
+import CaseStudy from '../pages/CaseStudy';
 import useTheme from '../hooks/useTheme';
-import { TABS, PROJECTS } from '../data';
+import useReveal from '../hooks/useReveal';
 
-const DEFAULT_TAB = 'featured';
-const validTabIds = (() => {
-    const set = new Set();
-    TABS.forEach((t) => set.add(t[0]));
-    PROJECTS.forEach((p) => p.c.forEach((id) => set.add(id)));
-    return Array.from(set);
-})();
-
-function App() {
-    const [activeTab, setActiveTab] = useState(DEFAULT_TAB);
+function Shell() {
     const [theme, toggleTheme] = useTheme();
-    const hash = useHash();
+    const location = useLocation();
+    const revealRootRef = useRef(null);
 
-    // Sync initial / hash-driven tab selection (only when hash is a tab id,
-    // not when navigating to #contact / #skills / #banner).
-    useEffect(() => {
-        if (!hash) return;
-        if (validTabIds.includes(hash)) setActiveTab(hash);
-    }, [hash]);
+    // Re-scan for .reveal elements on every route change: sections mounted
+    // after the first route (e.g. Home opened from a case study) must be
+    // observed too, or they would stay at opacity 0.
+    useReveal(revealRootRef, location.pathname);
 
-    // Keep <title> in sync with the selected tab.
+    // Route-change scroll behavior: jump to the hash target when present
+    // (e.g. /#skills from the case-study page), otherwise to the top.
     useEffect(() => {
-        document.title = `${activeTab === 'featured' ? 'Selected work' : activeTab} — Bernard Abaidoo`;
-        return () => { document.title = 'Bernard Abaidoo — Fullstack Web · Machine Learning'; };
-    }, [activeTab]);
+        if (location.hash) {
+            const el = document.querySelector(location.hash);
+            if (el) {
+                el.scrollIntoView({ behavior: 'auto' });
+                return;
+            }
+        }
+        window.scrollTo(0, 0);
+    }, [location.pathname, location.hash]);
 
     return (
-        <div className="App" data-theme={theme}>
-            <LogoBowl activeTab={activeTab} />
-            <Profile />
-            <main className="wrap">
-                <Projects activeTab={activeTab} onTabChange={setActiveTab} />
-                <SkillsSection />
-                <Contact />
+        <div className="min-h-screen flex flex-col" ref={revealRootRef}>
+            <a className="skip-link" href="#main">Skip to content</a>
+            <Header theme={theme} onToggleTheme={toggleTheme} />
+            <main id="main" className="flex-1">
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/work/:slug" component={CaseStudy} />
+                    <Route component={Home} />
+                </Switch>
             </main>
-            <Footer onToggleTheme={toggleTheme} />
+            <Footer theme={theme} onToggleTheme={toggleTheme} />
         </div>
     );
 }
 
-export default App;
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Shell />
+        </BrowserRouter>
+    );
+}
