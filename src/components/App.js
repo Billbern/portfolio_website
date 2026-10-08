@@ -32,16 +32,20 @@ function Shell() {
 
     return (
         <div className="min-h-screen flex flex-col" ref={revealRootRef}>
+            {/* Stamped-cloth texture: fixed, full-page, z-0, decorative. */}
+            <div className="cloth-layer" aria-hidden="true" />
             <a className="skip-link" href="#main">Skip to content</a>
-            <Header theme={theme} onToggleTheme={toggleTheme} />
-            <main id="main" className="flex-1">
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/work/:slug" component={CaseStudy} />
-                    <Route component={Home} />
-                </Switch>
-            </main>
-            <Footer theme={theme} onToggleTheme={toggleTheme} />
+            <div className="shell-content">
+                <Header theme={theme} onToggleTheme={toggleTheme} />
+                <main id="main" className="flex-1">
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/work/:slug" component={CaseStudy} />
+                        <Route component={Home} />
+                    </Switch>
+                </main>
+                <Footer theme={theme} onToggleTheme={toggleTheme} />
+            </div>
         </div>
     );
 }

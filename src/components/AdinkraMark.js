@@ -2,7 +2,8 @@
 // CRA 4 has no Vite `?raw`, so inlining goes through CRA's built-in SVGR
 // (`ReactComponent` named import). The wrapper is aria-hidden, pointer-events
 // -none and select-none: purely decorative, never interactive. Callers pass
-// positioning via className (watermarks: absolutely positioned → zero CLS).
+// sizing/placement via className (currently just the footer's inline glyph;
+// the page-wide texture is the .cloth-layer data-URI tile in index.css).
 import { ReactComponent as Nkyinkyim } from '../assets/adinkra/nkyinkyim.svg';
 import { ReactComponent as Sankofa } from '../assets/adinkra/sankofa.svg';
 import { ReactComponent as Adinkrahene } from '../assets/adinkra/adinkrahene.svg';

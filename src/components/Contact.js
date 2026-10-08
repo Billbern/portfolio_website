@@ -1,11 +1,9 @@
 import { SITE } from '../data/site';
 import SectionHeader from './SectionHeader';
-import AdinkraMark from './AdinkraMark';
 
 export default function Contact() {
     return (
-        <section id="contact" aria-label="Contact" className="py-16 wm-host">
-            <AdinkraMark name="dwennimmen" className="wm wm-left wm-contact" />
+        <section id="contact" aria-label="Contact" className="py-16">
             <div className="container-x">
                 <SectionHeader index="05" label="Contact" title="Contact" />
                 <div className="card p-8 md:p-10 reveal">

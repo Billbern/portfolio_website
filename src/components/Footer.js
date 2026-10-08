@@ -26,7 +26,7 @@ export default function Footer({ theme, onToggleTheme }) {
                 </div>
                 {/* Row 2 — colophon on its own line, below row 1. */}
                 <p className="mt-3 font-mono text-xs text-muted">
-                    Adinkra, Ghana — Nkyinkyim · adaptability (Work) · Sankofa · learning from the past (Experience) · Adinkrahene · leadership (Skills) · Dwennimmen · strength with humility (Contact).
+                    Background: adinkra cloth — Nkyinkyim · Sankofa · Adinkrahene · Dwennimmen. Adinkra symbols, Ghana.
                 </p>
             </div>
         </footer>

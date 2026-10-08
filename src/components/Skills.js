@@ -1,13 +1,11 @@
 import { SKILL_GROUPS } from '../data/skills';
 import SectionHeader from './SectionHeader';
-import AdinkraMark from './AdinkraMark';
 
 // 04 · Skills — grouped columns of canonical-named chips.
 // Spec: NO skill bars, no percentages.
 export default function Skills() {
     return (
-        <section id="skills" aria-label="Skills" className="py-16 wm-host">
-            <AdinkraMark name="adinkrahene" className="wm wm-right wm-skills" />
+        <section id="skills" aria-label="Skills" className="py-16">
             <div className="container-x">
                 <SectionHeader
                     index="04"
