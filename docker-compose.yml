@@ -5,7 +5,7 @@ services:
       dockerfile: dockerfile
     image: portfolio-website:latest
     ports:
-      - "8080:82"
+      - "8082:80"
     restart: unless-stopped
     networks:
       - npm-shared-net
