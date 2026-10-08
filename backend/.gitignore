@@ -1,0 +1,21 @@
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Django
+db.sqlite3
+staticfiles/
+.media/
+
+# Environment / secrets
+.env
+
+# Tooling
+.pytest_cache/
+coverage.xml
+htmlcov/
+*.log
