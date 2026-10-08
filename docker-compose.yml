@@ -2,8 +2,8 @@ services:
   portfolio:
     build:
       context: .
-      dockerfile: dockerfile
-    image: portfolio-website:latest
+      dockerfile: Dockerfile
+    container_name: portfolio-website
     ports:
       - "8082:80"
     restart: unless-stopped
