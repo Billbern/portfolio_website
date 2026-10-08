@@ -1,7 +1,6 @@
 # Dependencies & output — rebuilt inside the image. node_modules must never
 # reach `COPY . .` or it would clobber the npm ci layer.
 node_modules
-build
 coverage
 
 # VCS / OS
