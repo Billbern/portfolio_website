@@ -22,6 +22,27 @@ npm start       # http://localhost:3000
 npm run build   # ./build ready for static deploy
 ```
 
+## Docker
+
+Serve the production build as a static container:
+
+```bash
+docker compose up --build    # http://localhost:8080
+```
+
+or without compose (note the lowercase filename):
+
+```bash
+docker build -f dockerfile -t portfolio-website .
+docker run --rm -p 8080:80 portfolio-website
+```
+
+Stage 1 (`node:22-alpine`) runs `npm ci --legacy-peer-deps` and `npm run build`;
+stage 2 (`nginx:stable-alpine`) serves `build/` with gzip, a `try_files` SPA
+fallback for `/work/:slug`, and immutable caching for hashed `/static/` assets
+(see `nginx.conf`).
+
+
 ## Editing content
 All identity (name, email, GitHub, LinkedIn, CV) lives in `src/data/site.js`.
 All projects / experience / skills / highlights live in `src/data/*.js`.
@@ -44,6 +65,7 @@ the 404 trick is harmless.
 - `src/data/*.js` — all copy (identity, projects, experience, highlights, skills, brand paths)
 - `src/assets/css/index.css` — tokens, components, motion
 - `tailwind.config.js` / `craco.config.js` — toolchain wiring
+- `dockerfile` / `nginx.conf` / `docker-compose.yml` — container build + static serve
 
 ## Known gaps
 See `TODO.md` for the list of `[BRACKET]` placeholders that need to be resolved

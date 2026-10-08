@@ -1,0 +1,9 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: dockerfile
+    image: portfolio-website:latest
+    ports:
+      - "8080:80"
+    restart: unless-stopped

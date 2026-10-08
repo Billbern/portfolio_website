@@ -1,0 +1,24 @@
+# Dependencies & output — rebuilt inside the image. node_modules must never
+# reach `COPY . .` or it would clobber the npm ci layer.
+node_modules
+build
+coverage
+
+# VCS / OS
+.git
+.gitignore
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Not needed in the image
+screenshots
+scripts/screenshots
+docker-compose.yml
+README.md
+CHANGELOG.md
+TODO.md
