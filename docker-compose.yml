@@ -7,3 +7,10 @@ services:
     ports:
       - "8080:80"
     restart: unless-stopped
+    networks:
+      - npm-shared-net
+
+
+networks:
+  npm-shared-net:
+    external: true
